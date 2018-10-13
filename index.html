@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The Hobbit (1982 game) graphics engine in Javascript</title>
+  </head>
+  <body>
+    <h3>The Hobbit (1982 game) graphics engine in Javascript</h3>
+
+    <div style="float: right; margin-bottom: 16px; margin-left: 16px;">
+      <canvas height="128" id="gfx" style="border: 16px solid #000000;" width="256"></canvas>
+      <br/>
+      <select name="sel1" onchange="run(this.selectedIndex);">
+        <option>Tunnel like hall</option>
+        <option>Great river</option>
+        <option>Trolls' path</option>
+        <option>Narrow place</option>
+        <option>Dragon's desolation</option>
+        <option>Straight smooth passage</option>
+        <option>Dale valley</option>
+        <option>Trolls' cave</option>
+        <option>Forest gate</option>
+        <option>Lake town</option>
+        <option>Goblins' dungeon</option>
+        <option>Dark dungeon</option>
+        <option>Trolls' clearing</option>
+        <option>Elvish clearing</option>
+        <option>Lonelands</option>
+        <option>Elvenking's cellar</option>
+        <option>Goblins' big cavern</option>
+        <option>Gloomy bewitched place</option>
+        <option>Running river</option>
+        <option>Lower halls</option>
+        <option>Spider place</option>
+        <option>Front gate</option>
+      </select>
+      <script src="hobbitgfx.js"></script>
+      <script type="text/javascript">run(0);</script>
+    </div>
+
+    <p>One of the first computer games that really fascinated me was the
+      1982 text adventure based on The Hobbit, for the ZX Spectrum. I
+      was 12 years old when I first played it, and it was immediately
+      clear that this was different from any other game I'd seen. It was
+      a text adventure, but some locations had illustrations in brightly
+      coloured graphics, which although crude by today's standards
+      really helped transport you to another world back in those days of
+      mostly monochrome screens and text-only adventure games. There is
+      much more to be said about what made the game so special - in
+      fact, the graphics may be the least interesting point - but it's a
+      starting point that will do for now.</p>
+
+    <p>There were over 20 illustrations in the game, each covering 2/3
+      of the screen area. The game itself only occupied 40K and a ZX
+      Spectrum used just under 7K for the graphics memory (bitmap +
+      colour information), so it was clear that you couldn't simply
+      store whole images. Instead, they painted the illustrations from
+      scratch each time, using a small set of graphics primitives, and
+      each illustration was stored as a sequence of drawing instructions
+      compactly encoded as bytes. Since it took many seconds to draw an
+      image, you could easily follow what was happening and understand
+      that this was how it worked.</p>
+
+    <p>I always wanted to see how their graphics engine worked, and make
+      it possible to draw the illustrations without running the game in
+      an emulator, but I have only ever found partial disassemblies of
+      the game, and nothing at all about the graphics routines or the
+      format they used. A week or so ago I decided to reverse-engineer
+      it myself, for the hell of it. It turned out to be a bit tricky
+      but not so bad after all. And of course, once I had figured it
+      out, I wanted to reimplement it in a more portable language using
+      a more portable graphics backend, i.e., Javascript and html canvas
+      (something I've never had reason to touch before). This weekend I
+      found some quiet time to implement it, and it works. As far as I
+      have been able to tell, comparing to the game running in an
+      emulator, the screens are rendered pixel perfect. If you too have
+      been playing this game as a kid, you might find it interesting to
+      look at <a href="https://github.com/richcarl/hobbitgfx">the code
+      on GitHub</a>. Or just use the drop-down menu above to look at the
+      images drawn in real-time in your browser, way faster than an old
+      3.5MHz Z80 could do it back in the day.</p>
+  </body>
+</html>
